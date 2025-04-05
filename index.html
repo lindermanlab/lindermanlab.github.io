@@ -1,0 +1,486 @@
+---
+---
+<!DOCTYPE HTML>
+<!--
+    Built on Miniport by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>Linderman Lab at Stanford University</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+
+<script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-56811282-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+<body>
+
+    <!-- Home -->
+    <div class="wrapper style1 first" id="top">
+        <article class="container">
+            <div class="row">
+                <div class="4u 12u(mobile)">
+                    <span class="image fit">
+		                <img src="images/logo_code.gif" alt="" />
+	                </span>
+                </div>
+                <div class="8u 12u(mobile)">
+                    <header>
+                        <h1>Linderman Lab</h1>
+                        <h2>Stanford University</h2>
+                        <p>
+                            Welcome to the Linderman Lab! We belong to the <a href="https://statistics.stanford.edu/">Statistics Department</a> and the <a href="https://neuroscience.stanford.edu/">Wu Tsai Neurosciences Institute</a> at Stanford University.
+                            We work at the intersection of <strong>machine learning</strong> and <strong>computational neuroscience</strong>, developing models and algorithms to better understand complex biological data. Check out some of our research
+                            below, and reach out if you'd like to learn more!
+                        </p>
+                    </header>
+
+                    <!--navigation bar -->
+                    <ul class="container" id="nav">
+                        <li><a href="#research" class="icon"><i class="fas fa-book-open"></i> Research</a></li>
+                        <li><a href="#group" class="icon"><i class="fas fa-users"></i> Group</a></li>
+                        <li><a href="#teaching" class="icon"><i class="fas fa-chalkboard"></i> Teaching</a></li>
+                        <li><a href="#publications" class="icon"><i class="fas fa-briefcase"></i> Publications</a></li>
+                        <li><a href="https://github.com/lindermanlab" class="icon"><i class="fab fa-github"></i> Code</a></li>
+                        <li><a href="https://lindermanlab.github.io/hackathons/" class="icon"><i class="fas fa-rss"></i> Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!-- Research -->
+    <div class="wrapper style2">
+        <article id="research">
+            <header>
+                <h2>Research</h2>
+            </header>
+            <div class="container">
+                <p>
+                    Modern recording technologies allow simultaneous measurements of hundreds, if not thousands, of neurons in freely moving animals. 
+                    In parallel, advances in computer vision enable fast and accurate tracking of animal pose, yielding rich quantification of the nervous system's behavioral output. 
+                    These technologies offer exciting opportunities to link brain activity to behavior, but they also pose statistical challenges: Neural and behavioral data are noisy, high-dimensional time series with nonlinear dynamics and substantial variability across contexts and subjects. 
+                    We develop <b>probabilistic models</b>, <b>scalable inference algorithms</b>, and <b>robust software tools</b> to overcome these challenges and offer new insights into the neural basis of natural behavior.
+                </p>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="3u 12u(mobile)">
+                        <article class="box style2">
+                            <img src="images/neural_ssm.png" width="100%"/>
+                            <p style="font-size:0.8em; text-align:center">Discrete and continuous latent states of an rSLDS (<a href="#linderman2017recurrent">Linderman et al., 2017</a>; <a href="#hu2024modeling">Hu et al., 2024</a>; e.g.)</p>
+                        </article>
+                    </div>
+                    <div class="9u 12u(mobile)">
+                        <h3>State Space Models for Neural Data</h3>
+                        <p>
+                            State space models (SSMs) are probabilistic models that capture latent states underlying high-dimensional data.
+                            We develop SSMs tailored to neural data, like the <b>recurrent switching linear dynamical system (rSLDS)</b> 
+                            <a href="#linderman2017recurrent">(Linderman et al., 2017)</a> and related models (<a href="#nassar2019tree">Nassar et al., 2019</a>; 
+                            <a href="#glaser2020multi">Glaser et al., 2020</a>; <a href="#zoltowski2020unifying">Zoltowski et al., 2020</a>; <a href="#smith2021reverse">Smith et al., 2021</a>; <a href="#lee2023switching">Lee et al., 2023</a>).
+                            Recently, we developed the Gaussian process SLDS (<a href="#hu2024modeling">Hu et al., 2024</a>), which generalizes the rSLDS while retaining its interpretable structure.
+                            We work closely with experimental neuroscientists to apply our techniques and motivate new methodological work.
+                            For example, we are working with <a href="https://www.bbe.caltech.edu/people/david-j-anderson">Prof. David Anderson</a> at Caltech to study attractor dynamics in the hypothalamus during social interactions using our methods
+                            (<a href="#nair2023approximate">Nair et al., 2023</a>; <a href="#liu2024encoding">Liu*, Nair* et al., 2024</a>; <a href="#mountoufaris2024neuropeptide">Mountoufaris et al., 2024</a>; <a href="#vinograd2024intrinsic">Vinograd*, Nair* et al., 2024</a>). 
+                            Finally, we develop software packages like <a href="https://github.com/lindermanlab/ssm">SSM</a> and <a href="https://probml.github.io/dynamax/">Dynamax</a> (<a href="#linderman2024dynamax">Linderman et al., 2024</a>) for practitioners and methodological researchers alike.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="3u 12u(mobile)">
+                        <article class="box style2">
+                            <img src="images/gimbal3.jpg" width="80%"/>
+                            <p style="font-size:0.8em; text-align:center">Modeling keypoints with GIMBAL (<a href="#zhang2021gimbal">Zhang et al., 2021</a>) and Keypoint MoSeq (<a href="#weinreb2024keypoint">Weinreb et al., 2024</a>).</p>
+                        </article>
+                    </div>
+                    <div class="9u 12u(mobile)">
+                        <h3>Behavioral Time Series Models</h3>
+                        <p>
+                            Quantifying natural behavior poses both computational and statistical challenges, like how to track animals' posture, identify stereotyped patterns of movement, and relate movement to simultaneously recorded neural measurements. 
+                            For several years, we have worked with <a href="https://neuro.hms.harvard.edu/faculty-staff/sandeep-robert-datta">Prof. Bob Datta</a> at Harvard Medical School to extend and apply Motion Sequencing (MoSeq) (<a href="https://doi.org/10.1016%2Fj.neuron.2015.11.031">Wiltschko et al., 2015</a>), an SSM that parses videos of freely moving animals into sequences of short, stereotyped movements called <i>syllables</i>. 
+                            We have developed methods like Time-Warped MoSeq, which disentangles discrete and continuous forms of behavioral variation (<a href="#costacurta2022distinguishing">Costacurta et al., 2022</a>),
+                            and GIMBAL, a probabilistic model for 3D keypoint tracking (<a href="#zhang2021gimbal">Zhang et al., 2021</a>).
+                            Recently, we collaborated with the Datta Lab on <b>Keypoint MoSeq</b> (<a href="#weinreb2024keypoint">Weinreb et al., 2024</a>), which combines GIMBAL and MoSeq to extract syllables directly from keypoint trajectories.
+                            Using these tools, we have studied how natural behavior relates to neural activity in the basal ganglia in mice (<a href="#markowitz2018striatum">Markowitz et al., 2018</a>, <a href="#markowitz2023spontaneous">2023</a>), 
+                            how it correlates with whole-brain activity patterns measured with Fos (<a href="#friedmann2024concerted">Friedmann et al., 2024</a>),
+                            and how internal state and external stimuli drive natural behavior of larval zebrafish (<a href="#johnson2020probabilistic">Johnson*, Linderman* et al., 2020</a>).
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="3u 12u(mobile)">
+                        <article class="box style2">
+                            <img src="images/deep_ssm.png" width="100%"/>
+                            <p style="font-size:0.8em; text-align:center">The S5 architecture (<a href="#smith2023simplified">Smith et al., 2023</a>).
+                        </article>
+                    </div>
+                    <div class="9u 12u(mobile)">
+                        <h3>Deep State Space Models</h3>
+                        <p>
+                            There has been a resurgence of interest in state space models within the machine learning community thanks to the impressive performance of deep SSMs (Gu et al., 2021, 2023).
+                            The architecture is surprisingly simple: each layer is a standard linear dynamical system, and the layers are nonlinearly coupled to one another to capture more complex relationships. 
+                            We contributed to this line of work with <b>S5</b> (<a href="#smith2023simplified">Smith et al., 2023a</a>,<a href="#smith2023convolutional">b</a>), which simplified earlier work and paved the way for deep SSMs with time-varying dynamics.
+                            Now we are developing a theoretical framework for understanding deep SSMs (<a href="#smekal2024theory">Smékal et al., 2024</a>) and extending the parallel scan at the core of S5 to allow nonlinear dynamics within each layer (<a href="#gonzalez2024towards">Gonzalez et al., 2024</a>).
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="3u 12u(mobile)">
+                        <article class="box style2">
+                            <img src="images/ppseq.jpg" width="100%"/>
+                            <p style="font-size:0.8em; text-align:center">PP-Seq (<a href="#williams2020point">Williams et al., 2020</a>).
+                        </article>
+                    </div>
+                    <div class="9u 12u(mobile)">
+                        <h3>Point Processes</h3>
+                        <p>
+                            Neural spike trains are naturally modeled as multivariate point processes. 
+                            My <a href="#linderman2016thesis">doctoral thesis</a> focused on Bayesian models and inference algorithms for discovering latent network structure underlying point processes (<a href="#linderman2014discovering">Linderman and Adams, 2014</a>; <a href="#linderman2016bayesian">Linderman et al., 2016</a>).
+                            More recently, we developed <b>PP-Seq</b> &mdash; a type of doubly-stochastic point process model called a Neyman-Scott process &mdash; for detecting sequential firing patterns in spike train data (<a href="#williams2020point">Williams et al., 2020</a>),
+                            and we made novel theoretical connections between Neyman-Scott processes and Bayesian nonparametric mixture models (<a href="#wang2023spatiotemporal">Wang et al., 2023</a>). 
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="3u 12u(mobile)">
+                        <article class="box style2">
+                            <img src="images/svae.jpg" width="80%"/>
+                            <p style="font-size:0.8em; text-align:center">Structure-exploiting amortized variational inference (<a href="#zhao2023revisiting">Zhao and Linderman, 2023</a>).
+                        </article>
+                    </div>
+                    <div class="9u 12u(mobile)">
+                        <h3>Scalable Inference Algorithms</h3>
+                        <p>
+                            As neural and behavioral recording technologies advance, the size of the resulting datasets is growing exponentially quickly.
+                            To fit complex models to these data, we need algorithms that can scale to the challenge. 
+                            We develop approximate Bayesian inference algorithms for complex models and large-scale datasets,
+                            including novel approaches for gradient-based variational inference (VI) (<a href="#naesseth2017rejection">Naesseth et al., 2017</a>),
+                            methods that blend sequential Monte Carlo and VI (<a href="#naesseth2018variational">Naesseth et al., 2018</a>; <a href="#lawson2022sixo">Lawson et al. 2022</a>, <a href="#lawson2023nasx">2023</a>), 
+                            and structure-exploiting inference algorithms for variational autoencoders (<a href="#zhao2023revisiting">Zhao and Linderman, 2023</a>).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!-- Group  -->
+    <div class="wrapper style2">
+        <article id="group">
+            <header>
+                <h2>Group</h2>
+            </header>
+
+            <br>
+
+            <div class="container">
+                <div class="row" id="scott">
+
+                    <div class="12u 12u(mobile)"">
+                    <article class="box style2">
+                        <div class="row">
+                            <div class="4u 12u(mobile)"">
+                                <a href="images/scott_2019.jpg"><img src="images/scott_small.jpg" alt=""/></a>
+                            </div>
+
+                            <div class="8u 12u(mobile)" id="scott">
+                                <h3>Scott W. Linderman</h3>
+                                <p>
+                                    I'm an Assistant Professor of <a href="https://statistics.stanford.edu/">Statistics</a> and an Institute Scholar in the <a href="https://neuroscience.stanford.edu/">Wu Tsai Neurosciences Institute</a> at Stanford University. I hold a courtesy appointment in <a href="https://cs.stanford.edu/">Computer Science</a>, and I'm a member of <a href="https://biox.stanford.edu/">Stanford Bio-X</a> and the <a href="https://ai.stanford.edu/">Stanford AI Lab</a>. I was a postdoctoral fellow with <a href="http://www.stat.columbia.edu/~liam/">Liam Paninski</a> and <a href="http://www.cs.columbia.edu/~blei/">David Blei</a> at Columbia University, and I completed my PhD in Computer Science at Harvard University with <a href="http://www.cs.princeton.edu/~rpa/">Ryan Adams</a> and <a href="http://people.seas.harvard.edu/~valiant/">Leslie Valiant</a>. I obtained my undergraduate degree in Electrical and Computer Engineering from Cornell University and spent three years as a software engineer at Microsoft prior to graduate school.
+                                </p>
+                            
+                                <p><strong>E-mail:</strong> scott.linderman@stanford.edu &nbsp;
+                                    <a href="cv/cv.pdf" class="icon"><i class="fas fa-id-card"></i> CV </a>  &nbsp;
+                                    <a href="https://scholar.google.com/citations?user=6mD3I24AAAAJ&hl=en" class="icon"><i class="fas fa-graduation-cap"></i> Google Scholar </a>
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                {% assign n = 0 %} {% assign j = 0 %} {% for student in site.group%} {% if j == 0 %}
+                <div class="row">
+                    {% endif %}
+
+                    <div class="4u 12u(mobile)">
+                        <article class="box style2">
+                            <a href={{ student.link }} class="image featured"><img src={{ student.pic }} alt="" /></a>
+                            <h3><a href={{ student.link }}>{{ student.name }}</a></h3>
+                            <p> {{ student.type }} </p>
+                            <!--<div id="email">
+                                <p>{{ student.email }}</p>
+                                </div>
+                            -->
+                        </article>
+                    </div>
+
+                    {% assign n = n | plus: 1 %} {% assign j = n | modulo: 3 %} {% if j == 0 %}
+                </div>
+                {% endif %} 
+                {% endfor %}
+
+                <!-- Close div if we ended part way through a row -->
+                {% if j > 0 %}
+                </div>
+                {% endif %}
+
+            </div>
+        
+            <br>
+            <header>
+                <h2>Alumni</h2>
+            </header>
+
+            <div class="container">
+                {% assign n = 0 %} {% assign j = 0 %} {% for student in site.alumni%} {% if j == 0 %}
+                <div class="row">
+                    {% endif %}
+
+                    <div class="4u 12u(mobile)">
+                        <article class="box style2">
+                            <a href={{ student.link }} class="image featured"><img src={{ student.pic }} alt="" /></a>
+                            <h3><a href={{ student.link }}>{{ student.name }}</a></h3>
+                            <p> {{ student.type }} </p>
+                            <!--<div id="email"><p>{{ student.email }}</p></div>-->
+                        </article>
+                    </div>
+
+                    {% assign n = n | plus: 1 %} {% assign j = n | modulo: 3 %} {% if j == 0 %}
+                </div>
+                {% endif %} {% endfor %}
+
+                <!-- Close div if we ended part way through a row -->
+                {% if j > 0 %}
+            </div>
+            {% endif %}
+
+    </div>
+    </article>
+    </div>
+
+    <!-- Teaching -->
+    <div class="wrapper style2">
+        <article id="teaching">
+            <header>
+                <h2>Teaching</h2>
+            </header>
+            <div class="container">
+                <div class="row">
+                    <div class="4u 12u(mobile)">
+                        <article class="box style2">
+                            <a href="https://slinderman.github.io/ml4nd/"><img src="images/stats320.png" width="100%"/></a>
+                        </article>
+                    </div>
+                    <div class="8u 12u(mobile)">
+                        <h3>STAT 320: Machine Learning Methods for Neural Data Analysis</h3>
+                        <p>
+                            This course is organized around a series of coding labs. 
+                            Each week, we introduce the theory behind a state-of-the-art method for neural data analysis. Then, in the lab, we develop a minimal version
+                            of that method from scratch, in Python. The methods include: spike sorting and calcium deconvolution methods for extracting relevant signals from raw data; markerless tracking methods for estimating animal pose in behavioral videos; generalized linear models and deep learning models for neural encoding and decoding; and state space models for analysis of high-dimensional neural and behavioral time-series. 
+                            <br>
+                            <strong>Online Textbook</strong> (Still in development): <a href="https://slinderman.github.io/ml4nd/">https://slinderman.github.io/ml4nd</a> 
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="4u 12u(mobile)">
+                        <article class="box style2">
+                            <a href="https://slinderman.github.io/stats305b/"><img src="images/stats305b.png" width="85%"/></a>
+                        </article>
+                    </div>
+                    <div class="8u 12u(mobile)">
+                        <h3>STAT 305B: Applied Statistics II</h3>
+                        <p>
+                            This is a course about models and algorithms for discrete data. We cover models ranging from generalized linear models to sequential latent variable models, autoregressive models, and transformers. On the algorithm side, we cover a few techniques for convex optimization, as well as approximate Bayesian inference algorithms like MCMC and variational inference. I think the best way to learn these concepts is to implement them from scratch, so coding is a big focus of this course. By the end, you will have a strong grasp of classical techniques as well as modern methods for modeling discrete data.
+                            <br>
+                            <strong>Course Reader</strong>: <a href="https://slinderman.github.io/stats305b/">https://slinderman.github.io/stats305b</a> 
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="4u 12u(mobile)">
+                        <article class="box style2">
+                            <a href="https://slinderman.github.io/stats305c/"><img width="80%" src="images/stats305c.gif" width="100%"/></a>
+                        </article>
+                    </div>
+                    <div class="8u 12u(mobile)">
+                        <h3>STAT 305C: Applied Statistics III</h3>
+                        <p>
+                            This course is about probabilistic modeling and (approximate) Bayesian inference algorithms for high dimensional data. Topics include multivariate Gaussian models, probabilistic graphical models, hierarchical Bayesian models, MCMC and variational Bayesian inference, principal components analysis, factor analysis, matrix completion, topic modeling, state space models, variational autoencoders, Gaussian processes, and point processes. Each week pairs a family of models with an approximate inference algorithm. The course involves extensive Python programming using PyTorch and applied statistical analyses of real datasets.
+                            <br>
+                            <strong>Course Reader</strong>: <a href="https://slinderman.github.io/stats305c/">https://slinderman.github.io/stats305c</a> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!-- Publications -->
+    <div class="wrapper style2">
+        <article id="publications">
+            <header>
+                <h2>Publications</h2>
+            </header>
+            <h3>2025</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="12u 12u(mobile) bibliography">
+                        {% bibliography --query @*[year=2025]%}
+                    </div>
+                </div>
+            </div>
+
+            <h3>2024</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="12u 12u(mobile) bibliography">
+                        {% bibliography --query @*[year=2024]%}
+                    </div>
+                </div>
+            </div>
+
+            <h3>2023</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="12u 12u(mobile) bibliography">
+                        {% bibliography --query @*[year=2023]%}
+                    </div>
+                </div>
+            </div>
+
+            <h3>2022</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="12u 12u(mobile) bibliography">
+                        {% bibliography --query @*[year=2022]%}
+                    </div>
+                </div>
+            </div>
+
+            <h3>2021</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="12u 12u(mobile) bibliography">
+                        {% bibliography --query @*[year=2021]%}
+                    </div>
+                </div>
+            </div>
+
+            <h3>2020</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="12u 12u(mobile) bibliography">
+                        {% bibliography --query @*[year=2020]%}
+                    </div>
+                </div>
+            </div>
+
+            <h3>2019</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="12u 12u(mobile) bibliography">
+                        {% bibliography --query @*[year=2019]%}
+                    </div>
+                </div>
+            </div>
+
+            <h3>2018</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="12u 12u(mobile) bibliography">
+                        {% bibliography --query @*[year=2018]%}
+                    </div>
+                </div>
+            </div>
+
+            <h3>2017</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="12u 12u(mobile) bibliography">
+                        {% bibliography --query @*[year=2017]%}
+                    </div>
+                </div>
+            </div>
+
+            <h3>2016</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="12u 12u(mobile) bibliography">
+                        {% bibliography --query @*[year=2016]%}
+                    </div>
+                </div>
+            </div>
+
+            <h3>2015</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="12u 12u(mobile) bibliography">
+                        {% bibliography --query @*[year=2015]%}
+                    </div>
+                </div>
+            </div>
+
+            <h3>2014</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="12u 12u(mobile) bibliography">
+                        {% bibliography --query @*[year=2014]%}
+                    </div>
+                </div>
+            </div>
+
+            <h3>2013</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="12u 12u(mobile) bibliography">
+                        {% bibliography --query @*[year=2013]%}
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+    <!-- Footer -->
+    <div class="wrapper style4 copyright">
+        <ul>
+            <li>&copy; Scott W. Linderman.</li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/skel-viewport.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

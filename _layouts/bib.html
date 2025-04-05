@@ -1,0 +1,38 @@
+---
+---
+<div>{{ reference }}
+{% if entry.comment %}
+<i>{{ entry.comment }}</i>
+{% endif %}
+{% if entry.award %}
+<b>{{ entry.award }}</b>
+{% endif %}
+<br>
+{% if entry.link %}
+    <a href="{{ entry.link }}">Paper</a>
+{% endif %}
+{% if entry.thesis %}
+    <a href="{{ entry.thesis }}">Thesis</a>
+{% endif %}
+{% if entry.arxiv %}
+    <a href="{{ entry.arxiv }}">arXiv</a>
+{% endif %}
+{% if entry.biorxiv %}
+    <a href="{{ entry.biorxiv }}">bioRxiv</a>
+{% endif %}
+{% if entry.poster %}
+    <a href="{{ entry.poster }}">Poster</a>
+{% endif %}
+{% if entry.slides %}
+    <a href="{{ entry.slides }}">Slides</a>
+{% endif %}
+{% if entry.talk %}
+    <a href="{{ entry.talk }}">Talk</a>
+{% endif %}
+{% if entry.blog %}
+    <a href="{{ entry.blog }}">Blog Post</a>
+{% endif %}
+{% if entry.code %}
+    <a href="{{ entry.code }}">Code</a>
+{% endif %}
+</div>

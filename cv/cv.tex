@@ -1,0 +1,1027 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Simple LaTeX CV Template %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTE: If you find that it says                                     %%
+%%                                                                    %%
+%%                           1 of ??                                  %%
+%%                                                                    %%
+%% at the bottom of your first page, this means that the AUX file     %%
+%% was not available when you ran LaTeX on this source. Simply RERUN  %%
+%% LaTeX to get the ``??'' replaced with the number of the last page  %%
+%% of the document. The AUX file will be generated on the first run   %%
+%% of LaTeX and used on the second run to fill in all of the          %%
+%% references.                                                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTE: If you are getting compilation errors referring to list      %%
+%%       definitions that don't match, you may need to upgrade to a   %%
+%%       newer version of the enumitem package. Try going to:         %%
+%%                                                                    %%
+%%   http://www.ctan.org/tex-archive/macros/latex/contrib/enumitem    %%
+%%                                                                    %%
+%%       then download the enumitem.sty file from there. Place it in  %%
+%%       the same directory as your CV. So long as there are no other %%
+%%       conflicts with older packages on your system, hopefully that %%
+%%       will fix your compilation problems.                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Don't like 10pt? Try 11pt or 12pt
+\documentclass[10pt]{article}
+
+% The automated optical recognition software used to digitize resume
+% information works best with fonts that do not have serifs. This
+% command uses a sans serif font throughout. Uncomment both lines (or at
+% least the second) to restore a Roman font (i.e., a font with serifs).
+%\usepackage{times}
+%\renewcommand{\familydefault}{\sfdefault}
+
+% Allows for formatted citations in text
+\usepackage[numbers]{natbib}
+
+% Bold my name
+% \newcommand{\myname}[1]{\textbf{#1}}
+\usepackage{xstring}
+\def\FormatName#1{%
+  \IfSubStr{#1}{Linderman}{\textbf{#1}}{#1}%
+  }
+% \def\FormatName#1{%
+%   \def\myname{Scott W. Linderman}%
+%   \edef\name{#1}%
+%   \ifx\name\myname
+%   \textbf{#1}%
+%   \else
+%   #1%
+%   \fi
+% }
+
+
+% Bibenty (fix clash with hyperref)
+\usepackage{bibentry}
+\makeatletter\let\saved@bibitem\@bibitem\makeatother
+
+% This is a helpful package that puts math inside length specifications
+\usepackage{calc}
+\usepackage{amssymb}
+\usepackage[official]{eurosym}
+
+% Layout: Puts the section titles on left side of page
+\reversemarginpar
+
+%
+%         PAPER SIZE, PAGE NUMBER, AND DOCUMENT LAYOUT NOTES:
+%
+% The next \usepackage line changes the layout for CV style section
+% headings as marginal notes. It also sets up the paper size as either
+% letter or A4. By default, letter was used. If A4 paper is desired,
+% comment out the letterpaper lines and uncomment the a4paper lines.
+%
+% As you can see, the margin widths and section title widths can be
+% easily adjusted.
+%
+% ALSO: Notice that the includefoot option can be commented OUT in order
+% to put the PAGE NUMBER *IN* the bottom margin. This will make the
+% effective text area larger.
+%
+% IF YOU WISH TO REMOVE THE ``of LASTPAGE'' next to each page number,
+% see the note about the +LP and -LP lines below. Comment out the +LP
+% and uncomment the -LP.
+%
+% IF YOU WISH TO REMOVE PAGE NUMBERS, be sure that the includefoot line
+% is uncommented and ALSO uncomment the \pagestyle{empty} a few lines
+% below.
+%
+
+%% Use these lines for letter-sized paper
+\usepackage[paper=letterpaper,
+            %includefoot, % Uncomment to put page number above margin
+            marginparwidth=1.25in,     % Length of section titles
+            marginparsep=.05in,       % Space between titles and text
+            margin=1in,               % 1 inch margins
+            includemp]{geometry}
+
+%% Use these lines for A4-sized paper
+%\usepackage[paper=a4paper,
+%            %includefoot, % Uncomment to put page number above margin
+%            marginparwidth=30.5mm,    % Length of section titles
+%            marginparsep=1.5mm,       % Space between titles and text
+%            margin=25mm,              % 25mm margins
+%            includemp]{geometry}
+
+%% More layout: Get rid of indenting throughout entire document
+\setlength{\parindent}{0in}
+
+\usepackage[shortlabels]{enumitem}
+
+%% Reference the last page in the page number
+%
+% NOTE: comment the +LP line and uncomment the -LP line to have page
+%       numbers without the ``of ##'' last page reference)
+%
+% NOTE: uncomment the \pagestyle{empty} line to get rid of all page
+%       numbers (make sure includefoot is commented out above)
+%
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+%\pagestyle{empty}      % Uncomment this to get rid of page numbers
+\fancyhf{}\renewcommand{\headrulewidth}{0pt}
+\fancyfootoffset{\marginparsep+\marginparwidth}
+\newlength{\footpageshift}
+\setlength{\footpageshift}
+          {0.5\textwidth+0.5\marginparsep+0.5\marginparwidth-2in}
+\lfoot{\hspace{\footpageshift}%
+       \parbox{4in}{\, \hfill %
+                    \arabic{page} of \protect\pageref*{LastPage} % +LP
+%                    \arabic{page}                               % -LP
+                    \hfill \,}}
+
+% % Finally, give us PDF bookmarks
+\usepackage{hyperref}
+\hypersetup{colorlinks,breaklinks,urlcolor=black}
+\makeatletter\let\@bibitem\saved@bibitem\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Document Setup %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% HEADING AT TOP OF CURRICULUM VITAE
+
+% The title (name) with a horizontal rule under it
+% (optional argument typesets an object right-justified across from name
+%  as well)
+%
+% Usage: \makeheading{name}
+%        OR
+%        \makeheading[right_object]{name}
+%
+% Place at top of document. It should be the first thing.
+% If ``right_object'' is provided in the square-braced optional
+% argument, it will be right justified on the same line as ``name'' at
+% the top of the CV. For example:
+%
+%       \makeheading[\emph{Curriculum vitae}]{Your Name}
+%
+% will put an emphasized ``Curriculum vitae'' at the top of the document
+% as a title. Likewise, a picture could be included:
+%
+%   \makeheading[\includegraphics[height=1.5in]{my_picutre}]{Your Name}
+%
+% the picture will be flush right across from the name.
+\newcommand{\makeheading}[2][]%
+        {\hspace*{-\marginparsep minus \marginparwidth}%
+         \begin{minipage}[t]{\textwidth+\marginparwidth+\marginparsep}%
+             {\LARGE \bfseries #2 \hfill #1}\\[-0.15\baselineskip]%
+                 \rule{\columnwidth}{1pt}%
+         \end{minipage}}
+
+%%% SECTION HEADINGS
+
+% The section headings. Flush left in small caps down pseudo-margin.
+%
+% Usage: \section{section name}
+\renewcommand{\section}[1]{\pagebreak[3]%
+    \hyphenpenalty=10000%
+    \vspace{1.3\baselineskip}%
+    %\phantomsection\addcontentsline{toc}{section}{#1}%
+    \noindent\llap{\scshape\smash{\parbox[t]{\marginparwidth}{\raggedright #1}}}%
+    \vspace{-\baselineskip}\par}
+
+%%% LISTS
+
+% This macro alters a list by removing some of the space that follows the list
+% (is used by lists below)
+\newcommand*\fixendlist[1]{%
+    \expandafter\let\csname preFixEndListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixEndListend#1\endcsname\vspace{-0.6\baselineskip}}}
+
+% These macros help ensure that items in outer-type lists do not get
+% separated from the next line by a page break
+% (they are used by lists below)
+\let\originalItem\item
+\newcommand*\fixouterlist[1]{%
+    \expandafter\let\csname preFixOuterList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\csname preFixOuterList#1\endcsname\let\oldItem\item\def\item{\pagebreak[2]\oldItem}}
+    \expandafter\let\csname preFixOuterListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\let\item\oldItem\csname preFixOuterListend#1\endcsname}}
+\newcommand*\fixinnerlist[1]{%
+    \expandafter\let\csname preFixInnerList#1\expandafter\endcsname\csname #1\endcsname
+    \expandafter\def\csname #1\endcsname{\let\oldItem\item\let\item\originalItem\csname preFixInnerList#1\endcsname}
+    \expandafter\let\csname preFixInnerListend#1\expandafter\endcsname\csname end#1\endcsname
+    \expandafter\def\csname end#1\endcsname{\csname preFixInnerListend#1\endcsname\let\item\oldItem}}
+
+% An itemize-style list with lots of space between items
+%
+% Usage:
+%   \begin{outerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{outerlist}
+\newlist{outerlist}{itemize}{3}
+    \setlist[outerlist]{label=\enskip\tiny$\square$,leftmargin=*}
+    \fixendlist{outerlist}
+    \fixouterlist{outerlist}
+
+% An environment IDENTICAL to outerlist that has better pre-list spacing
+% when used as the first thing in a \section
+%
+% Usage:
+%   \begin{lonelist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{lonelist}
+\newlist{lonelist}{itemize}{3}
+    \fixendlist{lonelist}
+    \fixouterlist{lonelist}
+
+% An itemize-style list with little space between items
+%
+% Usage:
+%   \begin{innerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{innerlist}
+\newlist{innerlist}{itemize}{0}
+    \setlist[innerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixinnerlist{innerlist}
+
+% An environment IDENTICAL to innerlist that has better pre-list spacing
+% when used as the first thing in a \section
+%
+% Usage:
+%   \begin{loneinnerlist}
+%       \item ...    % (or \item[] for no bullet)
+%   \end{loneinnerlist}
+\newlist{loneinnerlist}{itemize}{3}
+    \setlist[loneinnerlist]{label=\enskip\textbullet,leftmargin=*,parsep=0pt,itemsep=0pt,topsep=0pt,partopsep=0pt}
+    \fixendlist{loneinnerlist}
+    \fixinnerlist{loneinnerlist}
+
+%%% EXTRA SPACE
+
+% To add some paragraph space between lines.
+% This also tells LaTeX to preferably break a page on one of these gaps
+% if there is a needed pagebreak nearby.
+\newcommand{\blankline}{\quad\pagebreak[3]}
+\newcommand{\halfblankline}{\quad\vspace{-0.5\baselineskip}\pagebreak[3]}
+
+%%% FORMATTING MACROS
+
+% Uses hyperref to link DOI
+%\newcommand\doilink[1]{\href{http://dx.doi.org/#1}{#1}}
+\newcommand\doi[1]{doi:\doilink{#1}}
+
+% % For \texttt{SOME_URL}, links SOME_URL to the url SOME_URL
+% \providecommand*\url[1]{\href{#1}{#1}}
+% % Same as above, but pretty-prints SOME_URL in teletype fixed-width font
+% \renewcommand*\url[1]{\href{#1}{\texttt{#1}}}
+
+% For \email{ADDRESS}, links ADDRESS to the url mailto:ADDRESS
+%\providecommand*\email[1]{\href{mailto:#1}{#1}}
+% Same as above, but pretty-prints ADDRESS in teletype fixed-width font
+%\renewcommand*\email[1]{\href{mailto:#1}{\texttt{#1}}}
+
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+%\providecommand\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%    \TeX}}
+\providecommand\BibTeX{{B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    \TeX}}
+\providecommand\Matlab{\textsc{Matlab}}
+
+%%%%%%%%%%%%%%%%%%%%%%%% End Helper Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% NOTE: Mind where the & separators and \\ breaks are in the following
+%       table. Table is one row made up of three parboxes. The left
+%       parbox has address info, the middle parbox has a vertical bar,
+%       and the right parbox has phone and electronic contact
+%       information.
+%
+% MACROS: \rcollength is the width of the right column of the table
+%             (adjust it to your liking; default is 1.85in).
+%         \spacewidth is width of area between left and right boxes.
+%         \spacechar is character used to produce perforated vertical
+%             boundary between boxes.
+%
+\newlength{\rcollength}\setlength{\rcollength}{1.85in}%
+\newlength{\spacewidth}\setlength{\spacewidth}{20pt}
+\newcommand\spacechar{$|$}
+%
+%\begin{tabular}{\textwidth}[t]%
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Begin CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\emergencystretch 3em
+
+\nobibliography{cv}
+\bibliographystyle{scottplain}
+
+\makeheading{Scott W. Linderman}
+
+\section{Contact Information}
+
+% Address box
+Department of Statistics\\
+Sequoia Hall, Room 228\\
+390 Jane Stanford Way\\
+Stanford University\\
+Stanford, CA 94305-4020\\
+\\
+% Non-snail-mail contact information
+email: 
+%\texttt{{slinderman@seas.harvard.edu}}
+\href{mailto:scott.linderman@stanford.edu}{\nolinkurl{scott.linderman@stanford.edu}}
+\\ 
+web: 
+\href{http://slinderman.web.stanford.edu}{\nolinkurl{http://slinderman.web.stanford.edu}}
+
+\section{Professional Experience}
+\parbox{\textwidth}{%
+  \textbf{Stanford University}  \hfill {\small 2019-present}\\
+  Assistant Professor, Department of Statistics\\
+  Assistant Professor (by courtesy), Computer Science Department\\
+  Assistant Professor (by courtesy), Electrical Engineering Department\\
+  Faculty Scholar, Wu Tsai Neurosciences Institute\\
+  Faculty Affiliate, Stanford Bio-X and Stanford AI Lab\\ 
+}
+\\
+\parbox{\textwidth}{%
+  \textbf{Google Research}  \hfill {\small 2022}\\
+  Visiting Faculty Researcher, Google Brain Team \\
+  Host: Kevin Murphy\\
+}
+\\
+\parbox{\textwidth}{%
+  \textbf{Columbia University} \hfill {\small 2016-2019}\\
+  Postdoctoral Fellow, Department of Statistics\\
+  Advisors: Liam Paninski and David Blei\\
+}
+\\
+\parbox{\textwidth}{%
+  \textbf{Microsoft Corporation}\hfill {\small 2008-2011}\\
+  Software Development Engineer in Test\\
+}
+
+%% 
+\section{Education}
+\parbox{\textwidth}{%
+  \textbf{Harvard University} \hfill {\small 2013-2016}\\
+  Ph.D., Computer Science\\
+  Advisors: Ryan Adams and Leslie Valiant\\
+}
+\\
+\parbox{\textwidth}{%
+  \textbf{Harvard University} \hfill {\small 2011-2013}\\
+  S.M., Computer Science\\
+  Advisor: Leslie Valiant\\
+}
+\\
+\parbox{\textwidth}{%
+  \textbf{Cornell University} \hfill {\small 2004-2008}\\
+  B.S., Electrical and Computer Engineering \\
+  \emph{Magna cum Laude} with Honors in Engineering\\
+}
+
+
+\section{Honors and Awards}
+  \begin{itemize}[leftmargin=0pt]
+    \setlength\itemsep{0em}
+
+  \item[] McKnight Scholar Award \hfill {\small 2023}
+  
+  \item[] Sloan Research Fellowship \hfill {\small 2022}
+  
+  \item[] Allen Institute Next Generation Leaders Council \hfill {\small 2019}
+  
+  \item[] Best Paper, 20th International Conference on Artificial Intelligence and  \hfill {\small 2017} \\
+    Statistics (AISTATS) \\
+    \textit{With Christian Naesseth, Francisco Ruiz, and David Blei}
+
+  \item[] Leonard J. Savage Award, International Society for Bayesian Analysis  \hfill {\small 2017}\\
+    \textit{Outstanding Dissertation in Applied Methodology} 
+
+  \item[] Simons Collaboration on the Global Brain Postdoctoral Fellowship \hfill {\small 2016}
+        
+  \item[] Siebel Scholarship \hfill {\small 2015}
+    
+  \item[] National Defense Science and Engineering Graduate Fellowship \hfill{\small 2011}
+    
+  % \item[] Cornell University John McMullen Dean's Merit Scholarship \hfill {\small 2004}
+    
+  % \item[] CollegeBoard AP Scholar with Distinction \hfill {\small 2004}
+  
+  % \item[] Rensellear Medal \hfill {\small 2003}
+  
+\end{itemize}
+
+
+\section{Publications}
+
+Note: all publications have authors listed in the order as published. Authorship convention in the field: lead senior author is listed last; lead junior author is listed first. (Asterisks denote joint lead or senior authorship).
+
+\vspace{.5em}
+
+{\small\scshape Books and Theses}
+\begin{outerlist}
+\item \textbf{Scott W. Linderman}. \textit{Machine Learning Methods for Neural Data Analysis}. 2024. \textit{In preparation. Available at} \url{https://slinderman.github.io/ml4nd}
+\item \bibentry{linderman2016thesis}. \\
+  \textbf{Received the Savage Award from the International Society for Bayesian Analysis}. 
+\end{outerlist}
+
+\vspace{0.5em}
+
+{\small\scshape Preprints and Manuscripts Under Review}
+\begin{outerlist}
+\item \bibentry{zhao2025informed}.
+\item \bibentry{narayan2025minions}.
+\item \bibentry{linderman2025bayesian}.
+\item \bibentry{versteeg2025computation}.
+\item \bibentry{nair2025perspective}.
+\item \bibentry{weinreb2025spontaneous}.
+\item \bibentry{levy2025natural}.
+\item \bibentry{willett2024brain}.
+\item \bibentry{bedbrook2024lifelong}.
+\item \bibentry{friedmann2024concerted}.
+\item \bibentry{vloeberghs2024bayesian}.
+\item \bibentry{kendrick2024transcriptomically}.
+\item \bibentry{bukwich2023competitive}.
+\end{outerlist}
+
+\vspace{.5em}
+{\small\scshape Peer reviewed journal, conference, and selected workshop papers}
+\begin{outerlist}
+\item \bibentry{linderman2025dynamax}.
+\item \bibentry{hu2024modeling}.
+\item \bibentry{costacurta2024structured}.
+\item \bibentry{gonzalez2024towards}.
+\item \bibentry{mountoufaris2024neuropeptide}.
+\item \bibentry{liu2024encoding}.
+\item \bibentry{vinograd2024intrinsic}.
+\item \bibentry{gershman2024explaining}.
+\item \bibentry{weinreb2024keypoint}. 
+\item \bibentry{smekal2024theory}.\\
+  \textbf{Selected for Spotlight Presentation.}  
+\item \bibentry{smith2023convolutional}.
+\item \bibentry{hennig2023emergence}. 
+\item \bibentry{wang2023spatiotemporal}.
+\item \bibentry{lawson2023nasx}.
+\item \bibentry{lee2023switching}.
+\item \bibentry{zhao2023revisiting}.
+\item \bibentry{smith2023simplified}. \\
+  \textbf{Selected for Oral Presentation. (1.5\% of all submissions).}  
+\item \bibentry{markowitz2023spontaneous}.
+\item \bibentry{nair2023approximate}.
+\item \bibentry{lawson2022sixo}. \\
+    \textbf{Selected for Oral Presentation. (1.5\% of all submissions).}  
+\item \bibentry{costacurta2022distinguishing}. 
+\item \bibentry{beller2022looking}. 
+\item \bibentry{beron2022mice}.   
+\item \bibentry{lin2022imaging}.  
+\item \bibentry{linderman2022weighing}.
+\item \bibentry{Williams2021single}.   
+\item \bibentry{smith2021reverse}. 
+\item \bibentry{williams2021generalized}. 
+\item \bibentry{yu2021fast}. 
+\item \bibentry{low2021dynamic}.
+\item \bibentry{zhang2021gimbal}. 
+\item \bibentry{Mittal2020-gs}. 
+\item \bibentry{williams2020point}. \\
+    \textbf{Selected for Oral Presentation (1.1\% of all submissions).}  
+\item \bibentry{glaser2020multi}.  
+\item \bibentry{tansey2020dose}.
+\item \bibentry{zoltowski2020unifying}.
+\item \bibentry{johnson2020probabilistic}.
+\item \bibentry{sun2019voltage}.\\
+  \textbf{Selected for Oral Presentation (0.5\% of all submissions).}  
+\item \bibentry{aposto2019mutually}.
+\item \bibentry{schein2019poisson}.
+\item \bibentry{batty2019behavenet}.    
+\item \bibentry{nassar2019treestructured}. 
+\item \bibentry{markowitz2018striatum}.
+\item \bibentry{sharma2018pointprocess}.  
+\item \bibentry{mena2018learning}.      
+\item \bibentry{linderman2018reparameterizing}.
+\item \bibentry{naesseth2018variational}.
+\item \bibentry{linderman2017recurrent}.  
+\item \bibentry{naesseth2017rejection}.\\
+  \textbf{Received Best Paper Award}.
+\item \bibentry{linderman2017comment}.  
+\item \bibentry{linderman2017using}.    
+\item \bibentry{linderman2016bayesian}.      
+\item \bibentry{elibol2016crosscorpora}.
+\item \bibentry{linderman2016nonparametric}.
+\item \bibentry{linderman2015dependent}.      
+\item \bibentry{linderman2014framework}.      
+\item \bibentry{linderman2014discovering}.
+\end{outerlist}
+
+\vspace{.5em}
+{\small\scshape Other preprints}
+\begin{outerlist}
+\item \bibentry{linderman2019hierarchical}.
+\item \bibentry{linderman2015scalable}.
+\end{outerlist}
+
+\blankline
+
+% {\small\scshape Workshop Papers and Abstracts}
+% \begin{outerlist}
+
+% \item \bibentry{nassar2019cosyne}.
+
+% \item \bibentry{raju2019inferring}.
+  
+% \item \bibentry{glaser2019state}.
+
+% \item \bibentry{markowitz2019resolving}.
+  
+% \item \bibentry{linderman2019point}.
+
+% \item \bibentry{linderman2018hierarchical}.
+
+% \item \bibentry{markowitz2018complementary}.
+
+% \item \bibentry{johnson2018revealing}.
+  
+% \item \bibentry{linderman2017latenthawkes}.
+  
+% \item \bibentry{mena2017permutation}.
+    
+% \item \bibentry{buchanan2017quantifying}.
+
+% \item \bibentry{linderman2017structure}.
+
+% \item \bibentry{linderman2017cosyne}.
+    
+% \item \bibentry{naesseth2016rejectionwkshp}.
+
+% \item \bibentry{chen2016bayesian}.
+  
+% \item \bibentry{linderman2016cosyne}.
+
+% \item \bibentry{linderman2015cosyne}.
+
+% \item \bibentry{johnson2015cosyne}.
+
+% \item  \bibentry{linderman2014cbmm}.
+
+% \item \bibentry{linderman2014sfn}.
+
+% \item \bibentry{nemati2014cosyne}.
+
+% \item \bibentry{linderman2013nips}.
+
+% \item \bibentry{linderman2013cosyne}.
+
+% \end{outerlist}
+
+
+\section{Research Support}
+
+\textit{Pending Grants and Awards}
+
+\begin{outerlist}
+
+\item \textbf{CAREER: State space models for neural and behavioral data} \\
+  Funding Agency: NSF \\
+  Award Period: 08/01/2025 - 07/31/2030 \\
+  Contact PI: S. Linderman \\
+  \textit{Role: PI}
+  
+\end{outerlist}
+
+\vspace{1em}
+
+\textit{Current Grants and Awards}
+
+\begin{outerlist}
+    
+\item \textbf{Understanding sensorimotor control through realistic neuro-biomechanical simulation} \\
+  Funding Agency: NIH \\
+  Award Period: 04/01/2024 - 03/31/2027 \\
+  Contact PI: B. Olveczky (Harvard) \\
+  \textit{Role: MPI}
+
+\item \textbf{Unified, Scalable, and Reproducible Neurostatistical Software} \\
+  %Total Amount: \$1,343,808\\
+  Funding Agency: NIH \\
+  Award Period: 07/01/23 - 06/30/2028 \\
+  Contact PI: A. Williams \\
+  \textit{Role: MPI}
+  
+\item \textbf{Machine Learning Methods for Discovering Structure in Neural and Behavioral Data} \\
+  %Total Amount: \$225,000\\
+  Funding Agency: McKnight Foundation \\
+  Award Period: 07/01/23 - 06/30/2026 \\
+  Contact PI: S. Linderman
+
+\item \textbf{Deconstructing the serotonin system in the mouse brain} \\
+  %Total Amount: \$3,953,554\\
+  Funding Agency: NIH \\
+  Award Period: 04/01/23 - 03/31/2028 \\
+  Contact PI: L. Luo \\
+  \textit{Role: MPI}
+
+\item \textbf{BRAID: DenPro3D Dendritic Processing of Spike Sequences in Biological and Artificial Brains} \\
+  %Total Amount: \$1,999,991\\
+  Funding Agency: NSF \\
+  Award Period: 07/01/2022 - 06/30/2026\\
+  Contact PI: K. Boahen\\
+  \textit{Role: Co-PI}
+  
+\item \textbf{Dendritic Computation for Knowledge Systems} \\
+  %Total Amount: \$462,963 \\
+  Funding Agency: Stanford Institute for Human-Centered Artificial Intelligence \\
+  Award Period: 09/01/2022-08/31/2023\\
+  Contact PI: K. Boahen \\
+  \textit{Role: Co-PI}
+  
+\item \textbf{CRCNS: Deonstructing the time-varying dynamics of motor cortex in freely moving behavior} \\
+  %Total Amount: \$2,000,893 \\
+  Funding Agency: NSF/NIH \\
+  Award Period: 07/15/2022 - 04/30/2027 \\
+  Contact  PI: P. Nuyujukian \\
+  \textit{Role: Co-PI}
+  
+\item \textbf{Discovering structure in neural and behavioral data} \\
+  %Total Amount: \$75,000 \\
+  Funding Agency: Alfred P. Sloan Foundation \\
+  Award Period: 09/15/2022 - 09/14/2024
+  Contact PI: S. Linderman
+  
+  
+\item \textbf{The dynamics of neural representations for distinct spatial contexts and memory episodes} \\
+  %Total award: \$1,981,193 \\
+  Funding agency: NIH – NIMH \\
+  Award number: Pending \\
+  Award period: 04/01/2022 – 03/31/2027 \\
+  % Total direct costs: \$2,763,211/yr;  Linderman direct costs: \$324,501/yr.  \\
+  Contact PI: L. Giocomo  \\
+  \textit{Role: Co-I}
+
+\item \textbf{Probing the Dorsolateral Prefrontal Cortex and Central Executive Network for Improving Neuromodulation in Depression} \\
+  %Total award: \$1,226,978 \\
+  Funding agency: CRCNS US-France Research Proposal \\
+  Award number: R01MH129018 \\
+  Award period: 07/1/2021-06/30/2026 \\
+  % Total direct costs: \$2,763,211/yr;  Linderman direct costs: \$324,501/yr.  \\
+  Contact PI: C. Keller  \\
+  \textit{Role: Co-I}
+
+\item \textbf{Discovering repeating neural motifs representing sequenced behavior} \\
+  %Total award: \$36,000 \\
+  Funding agency: Simons Foundation (Simons Collaboration on the Global Brain) \\
+  Award number: 697092 \\
+  Award period: 07/01/2020 -- 06/30/2023 \\
+  % Total direct costs: \$2,763,211/yr;  Linderman direct costs: \$324,501/yr.  \\
+  Contact PI: B. Sabatini \\
+  \textit{Role: Co-PI}
+
+
+\item \textbf{Toward a unified framework for dopamine signaling in the striatum} \\
+  %Total award: \$18,505,241 \\
+  Funding agency: NIH NINDS (Natl. Inst. of Neurological Disorders and Stroke) \\
+  Award number: 1U19NS113201 \\
+  Award period: 8/15/2019 -- 7/31/2024 \\
+  % Total direct costs: \$2,763,211/yr;  Linderman direct costs: \$324,501/yr.  \\
+  Contact PI: B. Sabatini \\
+  \textit{Role: MPI}
+
+\item \textbf{Neural representation of mating partners by male C. elegans}\\
+  %Total award: \$3,316,395 \\
+  Funding agency: NIH NINDS (Natl. Inst. of Neurological Disorders and Stroke) \\
+  Award number: 1R01NS113119 \\
+  Award period: 8/15/2019 -- 7/31/2024 \\
+  Contact PI: P. Sternberg\\
+  \textit{Role: MPI}
+% Total direct costs: \$524,281/yr; Linderman direct costs: \$143,980/yr.  \\
+
+\end{outerlist}
+
+\vspace{1em}
+
+\textit{Completed Grants and Awards}
+
+\begin{outerlist}
+\item \textbf{Multi-modal Inference in Brains, Minds, and Machines} \\
+  Total award: \$75,000 \\
+  Funding Agency: Stanford Institute for Human-Centered Artificial Intelligence \\
+  Award number: N/A \\
+  Award period: 3/13/2019 -- 3/12/2020 \\
+  Lead PI: T. Gerstenberg \\
+  \textit{Role: Co-PI}
+
+\item \textbf{Scalable probabilistic inference for mechanistic models: Bridging the
+    gap between scientific modelling and machine learning} \\
+  Total award: \euro{}6,000\\
+  Funding agency: Bavaria--California Technology Center (BaCaTeC)\\
+  Award number: N/A \\
+  Award period: 1/1/2019 -- 6/1/2020 \\
+  Lead PI: J. Macke
+  \textit{Role: Co-PI}
+
+\end{outerlist}
+
+% \section{Other\\Research Experience}
+% \textbf{Brains, Minds, and Machines}, Woods Hole, MA \hfill {\small 2014}\\
+% \textit{Marine Biological Laboratory, Woods Hole Oceanographic Institute} \\
+% Coordinators: Tomaso Poggio and L. Mahadevan
+
+% \textbf{Mining and Modeling Neural Data}, Berkeley, CA \hfill {\small 2013}\\
+% \textit{Redwood Center for Theoretical Neuroscience, U.C. Berkeley}\\
+% Coordinators: Friedrich Sommers and Jeff Teeters
+
+
+% \textbf{Biophysics and Computation in Neurons and Networks}, Princeton, NJ \hfill {\small 2012}\\
+% \textit{Princeton University}\\
+% Coordinators: David Tank and Michael Berry 
+
+% \textbf{Air Force Research Laboratory}, Rome, NY \hfill {\small 2003-2006}\\
+% \textit{Research and Development Intern}\\
+% Knowledge Systems, Information Directorate
+
+% \halfblankline
+
+\blankline
+
+\section{Teaching Experience}
+\begin{outerlist}
+
+\item \textbf{STATS305B: Applied Statistics II}, Stanford University \hfill{\small 2024,2025}\\
+Instructor: Scott Linderman
+
+\item \textbf{STATS220/320: Machine Learning Methods for Neural Data Analysis}, Stanford University \hfill{\small 2023}\\
+Instructor: Scott Linderman
+
+\item \textbf{STATS305C: Applied Statistics III}, Stanford University \hfill{\small 2022,2023}\\
+Instructor: Scott Linderman
+
+\item \textbf{STATS271/371: Applied Bayesian Statistics}, Stanford University \hfill{\small 2021}\\
+Instructor: Scott Linderman
+  
+\item \textbf{STATS220/320: Machine Learning Methods for Neural Data Analysis}, Stanford University \hfill{\small 2021}\\
+Instructor: Scott Linderman
+
+\item \textbf{STATS215: Statistical Models in Biology}, Stanford University \hfill{\small 2020}\\
+Instructor: Scott Linderman
+  
+\item \textbf{CS229: Biology and Complexity}, Harvard University \hfill{\small 2015}\\
+Instructor: Leslie Valiant
+
+\item \textbf{CS228: Computational Learning Theory}, Harvard University \hfill{\small 2014}\\
+Instructor: Leslie Valiant
+
+\item \textbf{CS281: Advanced Machine Learning}, Harvard University \hfill{\small 2013}\\
+Instructor: Ryan Adams
+
+\item \textbf{Columbia Advanced Machine Learning Seminar} \hfill{\small 2016-2017}\\
+web: \url{https://casmls.github.io}
+
+\end{outerlist}
+
+\blankline
+
+
+% Advising
+\section{Student\\Advising}
+
+\begin{outerlist}
+  
+\item Julia Costacurta, Graduate Student, Stanford Electrical Engineering \hfill {\small 2021-present}
+  
+\item Xavier Gonzalez, Graduate Student, Stanford Statistics \hfill {\small 2022-present}
+
+\item Amber Hu, Graduate Student, Stanford Statistics \hfill {\small 2022-present}
+
+\item Dieterich Lawson, Graduate Student, Stanford Computer Science \hfill {\small 2020-2023} \\
+  \textit{Currently: Research Scientist, Google.}
+  
+\item Hyun Dong Lee, Graduate Student, Stanford Computer Science \hfill {\small 2022-present} \\
+  \textit{Co-advised with Prof. Emily Fox}
+  
+\item Alisa Levin, Graduate Student, Stanford Computer Science \hfill {\small 2022-present}
+  \textit{Co-advised with Prof. Jaimie Henderson}
+
+\item Matthew MacKay, Graduate Student, Stanford Statistics \hfill {\small 2021-2023}
+  \textit{Currently: Software Engineer, Anthropic}
+  
+\item Blue Sheffer, Graduate Student, Stanford Computer Science \hfill {\small 2019-2021}
+  \textit{Currently: Founder, School of Song.}
+
+\item Jakub Sm\'{e}kal, Graduate Student, Stanford Applied Physics \hfill {\small 2024-present}
+  
+\item Jimmy Smith, Graduate Student, Stanford ICME \hfill {\small 2019-2024}
+  \textit{Currently: Founding Scientist, Liquid AI}
+  
+\item Ian Christopher Tanoh, Graduate Student, Stanford Statistics  \hfill {\small 2022-present}
+
+\item Libby Zhang, Graduate Student, Stanford Electrical Engineering \hfill {\small 2019-present}
+
+\item Yixiu Zhao, Graduate Student, Stanford Applied Physics \hfill {\small 2020-present}
+
+
+\end{outerlist}
+
+\blankline 
+
+\section{Postdoctoral Advising}
+
+\begin{outerlist}
+\item Dan Biderman, Postdoctoral Resarcher, Stanford Statistics and CS \hfill{\small 2024-present} \\
+  \textit{Co-advised with Prof. Chris R\'{e}.}
+
+\item E. Kelly Buchanan, Postdoctoral Resarcher, Stanford Statistics \hfill{\small 2024-present}
+  
+\item Lea Duncker, Postdoctoral Researcher, Stanford Statistics and EE \hfill {\small 2021-2023} \\
+  \textit{Co-advised with Prof. Krishna Shenoy.}\\
+  \textit{Currently: Assistant Professor, Columbia University.}
+
+\item Elizabeth DuPre, Postdoctoral Researcher, Stanford Psychology \hfill {\small 2022-present} \\
+  \textit{Co-advised with Prof. Russ Poldrack}
+
+\item Aditi Jha, Postdoctoral Researcher, Stanford Statistics \hfill{\small 2024-present} 
+  
+\item Andrew Warrington, Postdoctoral Researcher, Stanford Statistics \hfill {\small 2021-2023} \\
+  \textit{Currently: Research Scientist at GE Healthcare}
+
+\item Alex Williams, Postdoctoral Researcher, Stanford Statistics \hfill {\small 2019-2021}\\
+  \textit{Currently: Assistant Professor, NYU and Group Leader, Flatiron Institute.}
+
+\item David Zoltowski, Postdoctoral Researcher, Stanford Statistics \hfill {\small 2022-present}
+  \textit{Co-advised with Dr. David Sussillo}
+  
+\end{outerlist}
+
+\blankline
+
+% Service
+\section{Professional Service}
+
+\begin{outerlist}
+
+\item \textbf{Summer School Organization and Teaching:} \\
+  Allen Institute Summer Workshop on the Dynamic Brain, Lecturer. \hfill{\small 2021-2024}\\
+  Woods Hole Methods in Computational Neuroscience Course, Lecturer. \hfill{\small 2024}\\
+  Neuromatch Academy, Executive Committee (Co-Chair of Projects). \hfill{\small 2022-23} \\
+  JAX Short Course on Machine Learning for Quantifying Behavior, Lecturer. \hfill {\small 2022-24}\\
+  
+\item \textbf{Conference and Workshop Organization:} \\
+  Program Committee, Comp. and Sys. Neuro. Conference (COSYNE) \hfill{\small 2022-2024} \\
+  Program Committee, Bernstein Conference on Theoretical Neuroscience \hfill{\small 2024} \\
+  Co-Organizer, The Dynamic Brain Wkshp. at COSYNE \hfill{\small 2025} \\
+  Co-Organizer, ML Interp. for Scientific Discovery Wkshp. at ICML \hfill{\small 2020}\\
+  Co-Organizer, Learning Meaningful Repr. of Life Wkshp. at NeurIPS \hfill{\small 2019}\\
+  Co-Organizer, Automated Neuro-behavioral Analysis Wkshp at COSYNE \hfill{\small 2017}\\
+  Co-Organizer, Discovering Structure in Neural Data Wkshp at COSYNE \hfill{\small 2014}
+
+\item \textbf{Conference Area Chair:} \\
+  Neural Information Processing Systems (NeurIPS) \hfill{\small 2019-22}\\
+  International Conference on Learning Representations (ICLR) \hfill{\small 2021}\\
+  International Conference on Machine Learning (ICML) \hfill{\small 2021}\\
+  International Conference on Artificial Intelligence and Statistics (AISTATS) \hfill{\small 2021-23}
+  
+\item \textbf{Journal and Conference Reviewing:} \\
+  Annals of Applied Statistics\\
+  Biometrika\\
+  AAAI Conference on Artificial Intelligence (AAAI)\\
+  eLife\\
+  IEEE Transactions on Signal Processing\\
+  International Conference on Machine Learning (ICML)\\
+  International Conference on Artificial Intelligence and Statistics (AISTATS)\\
+  Journal of the American Statistical Association (JASA) \\
+  Journal of Computational Neuroscience\\
+  Nature \\ 
+  Nature Methods\\ 
+  Nature Communications\\
+  Neural Computation\\
+  Neural Information Processing Systems (NeurIPS) \\
+  PLoS Computational Biology\\
+  SIAM Journal on Applied Dynamical Systems (SIADS)
+
+\end{outerlist}
+
+\blankline
+
+% Talks
+\section{Selected Talks}
+
+\begin{outerlist}
+\item Princeton Neuroscience Institute, Princeton University. October 24, 2024.
+\item Jackson Laboratory. October 18, 2024.
+\item Kempner Institute, Harvard University. October 11, 2024
+\item Chen Institute for Neuroscience Director's Seminar, Caltech. June 4, 2024.
+\item University of Washington CoNectome Annual Symposium. May 13, 2024. 
+\item Two Sigma Investments. May 8, 2024. 
+\item Simons Collaboration on the Global Brain Annual Meeting. May 6, 2024. 
+\item International Winter Neuroscience Conference. April 9, 2024. 
+\item Cosyne Workshop on Reconstructing Dynamical Systems from Neural Data. March 4, 2024. 
+\item Statistics Seminar, Harvard University. November 27, 2023. 
+\item Neuroscience Seminar, Cold Spring Harbor Laboratory. November 20, 2023. 
+\item Biostatistics Seminar, University of North Carolina, Chapel Hill. Septemper 7, 2023.
+\item IDEAS Seminar Series in Theoretical Neuroscience, Georgia Tech. March 28-29, 2023.
+\item Cosyne Workshop on Generative Models for Neural/Behavioral Data Analysis. March 14, 2023.
+\item Machine Learning Seminar, Memorial Sloan-Kettering Cancer Center. December 6, 2022.
+\item NeuroTheory Seminar, Columbia University. December 5, 2022.
+\item Gaze Meets ML Workshop, NeurIPS. December 3, 2022.
+\item Neuroscience Seminar, UCSD. September 27, 2022.
+\item Neuroscience Semianr, University of Chicago. October 25, 2022.
+\item Short Course on Machine Learning Methods for Quantifying Behavior, JAX Laboratories. October 12, 2022.
+\item Joint Statistics Meeting (JSM), Contributed Talk. August 1, 2022.
+\item International Society for Bayesian Analysis, Contributed Talk. July 1, 2022.
+\item Stanford-Berkeley Joint Statistics Colloquium, UC Berkeley. April 19, 2022.
+\item Statistics Seminar, University of Connecticut. April 13, 2022.
+\item External Seminar Series, Gatsby Unit, UCL. January 12, 2022.
+\item Neuroscience Seminar, Boston University. November 3, 2021.
+\item SymPOSEium, University of Minnesota. October 14, 2021.
+\item CRCNS Workshop on Large Scale Neuroscience, NYU. October 9, 2021.
+\item Bernstein Conference on Theoretical Neuroscience, Berlin. September 22, 2021.
+\item Biostatistics Seminar, University of California, Berkeley. April 12, 2021.
+\item Statistics Seminar, University of California, Los Angeles. March 4, 2021.
+\item Statistics Seminar, University of British Columbia. November 3, 2020.
+\item Biostatistics Seminar, Duke University. October 23, 2020.
+\item Online Workshop on Linking Behavior and Neural Dynamics, LMU M\"{u}nchen. October 16, 2020.
+\item Mind, Brain, Computation, and Technology Seminar, Stanford University. October 12, 2020.
+\item Bernstein Workshop on Inferring and Testing Optimality in Perception and Neurons. September 29, 2020.
+\item SIAM Minisymposium on Machine Learning and Control Theory for Whole Brain Activity. June 26, 2020.
+\item ML Tea, Gatsby Computational Unit, University College London. April 24, 2020.
+\item Statistics Seminar, University of California, Davis. April 23, 2020.
+\item Cosyne Workshop on Interpretable Computational Neuroscience. March 1, 2020.
+\item Information Systems Laboratory (ISL) Colloquium, Stanford University. February 13, 2020.
+\item Chan Zuckerberg Institute. January 31, 2020.
+\item Google Brain. January 22, 2020. 
+\item Institute of Neuroscience Seminar.  University of Oregon.  November 21, 2019.
+\item Allen Institute for Brain Science. Seattle, WA. November 12, 2019.
+\item Biostatistics Workshop.  Stanford University.  October 24, 2019.
+\item Society for Neuroscience Virtual Conference on Machine Learning in Neuroscience. June 26,, 2019.  
+% \item Harvard University. April 12, 2019.  
+\item Cosyne Workshop on Social Behavior. Lisbon, Portugal. March 5, 2019.
+\item Cosyne Workshop on Data, dynamics, and computation: Using data driven methods to ground mechanistic theory. Lisbon, Portugal. March 4, 2019.  
+\item Theoretical and Computational Neuroscience Annual Conference, Gulf Coast Consortium. February 1, 2019.  
+\item NeuroNex Workshop, Rice and Baylor University. January 31, 2019.  
+\item Applied Math Seminar, Yale University. January 29, 2019.  
+\item Artificial Intelligence Seminar, Cornell University. September 28, 2018.  
+\item Center for Neuroengineering and Computation Seminar, Columbia University. September 24, 2018.  
+\item Simons Collaboration on the Global Brain, New York Area Postdoc Meeting. September 20, 2018.  
+\item Air Force Research Laboratory, Rome, NY. August 27, 2018.
+\item IACS Seminar, Stony Brook University. July 13, 2018.  
+\item Simons Workshop on Manifold Discovery. April 6, 2018.  
+\item Statistics Department, Stanford University. April 5, 2018.
+\item Allen Institute for Brain Science. March 28, 2018.  
+\item Paul Allen School of Computer Science and Engineering, University of Washington. March 26, 2018.
+\item Janelia Farm Research Campus. February 28, 2018.
+\item Stanford Neurosciences Institute, Stanford University. February 20, 2018.
+\item Zuckerman Institute, Columbia University. February 13, 2018.
+\item Statistics Department, Columbia University. February 12, 2018.
+\item Biophysics Department, University of Washington. February 5, 2018.
+\item Center for Brain Science, Harvard University. January~30, 2018.
+%\item Project SEM Multidisciplinary University Research Initiative (MURI), Princeton University. September 17, 2017.
+%\item Air Force Research Laboratory, Rome, NY. August 7, 2017.
+%\item Princeton Neurosciences Institute, Princeton University. June~22,~2017.
+%\item Machine Learning and Friends Seminar, UMass Amherst. May~4,~2017.
+%\item Models, Inference, and Algorithms (MIA) Seminar, The Broad Institute. April~12,~2017.  
+%\item Workshop on High-Dimensional Neuro-Behavioral Analysis, Cosyne. February~28,~2017.
+%\item Statistical Analysis of Neural Data Seminar, Stanford University. February~22,~2017.
+%\item Connectomics II Workshop, Neural Information Processing Systems (NIPS). December~10,~2016.  
+%\item Statistics and Math Reading Club, The Broad Institute. October 19, 2015.
+%\item Computational Statistics and Neuroscience Seminar, Columbia University. March 18, 2015.        
+%\item Machine Learning and Friends, University of Massachusetts at Amherst. February 12, 2015.
+%\item Applied Statistics Seminar, University of Washington. January 8th, 2015.
+%\item Harvard Center for Brain Science (CBS) Neurolunch, December 3rd, 2014.
+% \item Lazer Lab Meeting, Northeastern University. September 4th, 2014.
+%\item Harvard Computer Science Colloquium. July 24th, 2014.
+% \item David Cox Lab Meeting, Harvard University. July 10th, 2014.
+% \item Adam Cohen Lab Meeting, Harvard University. May 5th, 2014.
+%\item Boston Data Mining Meetup. May 1st, 2014.
+% \item Applied Statistics Workshop, Harvard University. September 4th, 2013.
+\end{outerlist}
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% End CV Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------%
+% The following is copyright and licensing information for
+% redistribution of this LaTeX source code; it also includes a liability
+% statement. If this source code is not being redistributed to others,
+% it may be omitted. It has no effect on the function of the above code.
+%----------------------------------------------------------------------%
+% Copyright (c) 2007, 2008, 2009, 2010, 2011 by Theodore P. Pavlic
+%
+% Unless otherwise expressly stated, this work is licensed under the
+% Creative Commons Attribution-Noncommercial 3.0 United States License. To
+% view a copy of this license, visit
+% http://creativecommons.org/licenses/by-nc/3.0/us/ or send a letter to
+% Creative Commons, 171 Second Street, Suite 300, San Francisco,
+% California, 94105, USA.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+% OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+% MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+% IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+% CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+% TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+% SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+%----------------------------------------------------------------------%

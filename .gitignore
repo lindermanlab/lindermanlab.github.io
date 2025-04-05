@@ -1,0 +1,12 @@
+Gemfile.lock
+_site
+vendor
+*~
+.DS_Store
+cv/cv.aux
+cv/cv.bbl
+cv/cv.blg
+cv/cv.log
+cv/cv.out 
+cv/texput.log
+cv/.jekyll-cache
