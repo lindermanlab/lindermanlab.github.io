@@ -1,6 +1,6 @@
 ---
 name: Xavier Gonzalez
-link: https://www.linkedin.com/in/xavier-gonzalez-517b5262/
+link: https://xaviergonzalez.github.io/
 type: PhD Student (Statistics)
 pic: images/xavier_new.jpg
 email: xavier18@stanford.edu
