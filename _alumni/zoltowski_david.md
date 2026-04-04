@@ -1,7 +1,7 @@
 ---
 name: David Zoltowski
 link: https://www.davidzoltowski.com/
-type: Postdoc (Co-advised by Dr. David Sussillo)
+type: Postdoc (2022-26) <br> (now Research Scientist at Google DeepMind)
 pic: images/zoltowski.jpg
-email: dzoltowski@stanford.edu
+email: 
 ---

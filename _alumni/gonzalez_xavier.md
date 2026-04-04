@@ -1,7 +1,7 @@
 ---
 name: Xavier Gonzalez
 link: https://xaviergonzalez.github.io/
-type: PhD Student (Statistics)
+type: PhD Student (Statistics, 2020-26) <br> (now Technical Staff at Unconventional AI)
 pic: images/xavier_new.jpg
-email: xavier18@stanford.edu
+email: 
 ---
