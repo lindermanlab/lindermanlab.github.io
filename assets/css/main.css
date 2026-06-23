@@ -26,6 +26,7 @@
 
 	#top {
 	    /* min-height: 100vh; */
+	    padding-bottom: 0;
 	}
 
 	
@@ -363,15 +364,28 @@
 	}
 
 /* Navigation */
-	#nav ul {
+	#navbar {
+		position: relative;
+		z-index: 1000;
+		background-color: #8c1515;
+		text-align: center;
+		padding: 20px 0;
+		line-height: 0;
+	}
+
+	#nav {
 		margin-bottom: 0;
 	}
 
 	#nav li {
 		display: inline-block;
+		vertical-align: middle;
 	}
 
 	#nav a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4em;
 		font-size: 1.25em;
 		font-weight: 600;
 		color: #ffffff;
@@ -453,9 +467,20 @@
 
 	@media screen and (min-width: 737px) {
 	    /* Articles */
-	    
+
 	    /* Basic */
-	    
+
+	    /* Navigation */
+
+	    #navbar {
+		position: sticky;
+		top: 0;
+	    }
+
+	    html {
+		scroll-padding-top: 90px;
+	    }
+
 	    body, input, textarea, select {
 		font-size: 13pt;
 	    }

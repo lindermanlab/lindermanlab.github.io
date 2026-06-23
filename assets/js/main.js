@@ -50,11 +50,11 @@
 		// Scrolly.
 			$window.load(function() {
 
-				var x = parseInt($('.wrapper').first().css('padding-top')) - 15;
-
 				$('#nav a, .scrolly').scrolly({
 					speed: 1000,
-					offset: x
+					offset: function() {
+						return window.matchMedia('(min-width: 737px)').matches ? $('#navbar').outerHeight() + 20 : 0;
+					}
 				});
 
 			});
