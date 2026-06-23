@@ -1,0 +1,96 @@
+    <!-- Group  -->
+    <div class="wrapper style2">
+        <article id="group">
+            <header>
+                <h2>Group</h2>
+            </header>
+
+            <br>
+
+            <div class="container">
+                <div class="row" id="scott">
+
+                    <div class="12u 12u(mobile)"">
+                        <article class="box style2">
+                            <div class="row">
+                                <div class="4u 12u(mobile)"">
+                                    <a href="images/scott_2019.jpg"><img src="images/scott_small.jpg" alt=""/></a>
+                                </div>
+
+                                <div class="8u 12u(mobile)" id="scott">
+                                    <h3>Scott W. Linderman</h3>
+                                    <p>
+                                        I'm an Assistant Professor of <a href="https://statistics.stanford.edu/">Statistics</a> and an Institute Scholar in the <a href="https://neuroscience.stanford.edu/">Wu Tsai Neurosciences Institute</a> at Stanford University. I hold a courtesy appointment in <a href="https://cs.stanford.edu/">Computer Science</a>, and I'm a member of <a href="https://biox.stanford.edu/">Stanford Bio-X</a> and the <a href="https://ai.stanford.edu/">Stanford AI Lab</a>. I was a postdoctoral fellow with <a href="http://www.stat.columbia.edu/~liam/">Liam Paninski</a> and <a href="http://www.cs.columbia.edu/~blei/">David Blei</a> at Columbia University, and I completed my PhD in Computer Science at Harvard University with <a href="http://www.cs.princeton.edu/~rpa/">Ryan Adams</a> and <a href="http://people.seas.harvard.edu/~valiant/">Leslie Valiant</a>. I obtained my undergraduate degree in Electrical and Computer Engineering from Cornell University and spent three years as a software engineer at Microsoft prior to graduate school.
+                                    </p>
+
+                                    <p><strong>E-mail:</strong> scott.linderman@stanford.edu &nbsp;
+                                        <a href="cv/cv.pdf" class="icon"><i class="fas fa-id-card"></i> CV </a>  &nbsp;
+                                        <a href="https://scholar.google.com/citations?user=6mD3I24AAAAJ&hl=en" class="icon"><i class="fas fa-graduation-cap"></i> Google Scholar </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                {% assign n = 0 %} {% assign j = 0 %} {% for student in site.group%} {% if j == 0 %}
+                <div class="row">
+                    {% endif %}
+
+                    <div class="4u 12u(mobile)">
+                        <article class="box style2">
+                            <a href={{ student.link }} class="image featured"><img src={{ student.pic }} alt="" /></a>
+                            <h3><a href={{ student.link }}>{{ student.name }}</a></h3>
+                            <p> {{ student.type }} </p>
+                            <!--<div id="email">
+                                <p>{{ student.email }}</p>
+                                </div>
+                            -->
+                        </article>
+                    </div>
+
+                    {% assign n = n | plus: 1 %} {% assign j = n | modulo: 3 %} {% if j == 0 %}
+                </div>
+                {% endif %}
+                {% endfor %}
+
+                <!-- Close div if we ended part way through a row -->
+                {% if j > 0 %}
+                </div>
+                {% endif %}
+
+            </div>
+
+            <br>
+            <header>
+                <h2>Alumni</h2>
+            </header>
+
+            <div class="container">
+                {% assign n = 0 %} {% assign j = 0 %} {% for student in site.alumni%} {% if j == 0 %}
+                <div class="row">
+                    {% endif %}
+
+                    <div class="4u 12u(mobile)">
+                        <article class="box style2">
+                            <a href={{ student.link }} class="image featured"><img src={{ student.pic }} alt="" /></a>
+                            <h3><a href={{ student.link }}>{{ student.name }}</a></h3>
+                            <p> {{ student.type }} </p>
+                            <!--<div id="email"><p>{{ student.email }}</p></div>-->
+                        </article>
+                    </div>
+
+                    {% assign n = n | plus: 1 %} {% assign j = n | modulo: 3 %} {% if j == 0 %}
+                </div>
+                {% endif %} {% endfor %}
+
+                <!-- Close div if we ended part way through a row -->
+                {% if j > 0 %}
+                </div>
+                {% endif %}
+
+            </div>
+        </article>
+    </div>

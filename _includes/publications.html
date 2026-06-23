@@ -1,0 +1,18 @@
+    <!-- Publications -->
+    <div class="wrapper style2">
+        <article id="publications">
+            <header>
+                <h2>Publications</h2>
+            </header>
+            {% for y in (2013..2026) reversed %}
+            <h3>{{ y }}</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="12u 12u(mobile) bibliography">
+                        {% bibliography --query @*[year={{ y }}]%}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </article>
+    </div>

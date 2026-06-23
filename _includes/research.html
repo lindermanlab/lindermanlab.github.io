@@ -1,0 +1,114 @@
+    <!-- Research -->
+    <div class="wrapper style2">
+        <article id="research">
+            <header>
+                <h2>Research</h2>
+            </header>
+            <div class="container">
+                <p>
+                    Modern recording technologies allow simultaneous measurements of hundreds, if not thousands, of neurons in freely moving animals.
+                    In parallel, advances in computer vision enable fast and accurate tracking of animal pose, yielding rich quantification of the nervous system's behavioral output.
+                    These technologies offer exciting opportunities to link brain activity to behavior, but they also pose statistical challenges: Neural and behavioral data are noisy, high-dimensional time series with nonlinear dynamics and substantial variability across contexts and subjects.
+                    We develop <b>probabilistic models</b>, <b>scalable inference algorithms</b>, and <b>robust software tools</b> to overcome these challenges and offer new insights into the neural basis of natural behavior.
+                </p>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="3u 12u(mobile)">
+                        <article class="box style2">
+                            <img src="images/neural_ssm.png" width="100%"/>
+                            <p style="font-size:0.8em; text-align:center">Discrete and continuous latent states of an rSLDS (<a href="#linderman2017recurrent">Linderman et al., 2017</a>; <a href="#hu2024modeling">Hu et al., 2024</a>; e.g.)</p>
+                        </article>
+                    </div>
+                    <div class="9u 12u(mobile)">
+                        <h3>State Space Models for Neural Data</h3>
+                        <p>
+                            State space models (SSMs) are probabilistic models that capture latent states underlying high-dimensional data.
+                            We develop SSMs tailored to neural data, like the <b>recurrent switching linear dynamical system (rSLDS)</b>
+                            <a href="#linderman2017recurrent">(Linderman et al., 2017)</a> and related models (<a href="#nassar2019tree">Nassar et al., 2019</a>;
+                            <a href="#glaser2020multi">Glaser et al., 2020</a>; <a href="#zoltowski2020unifying">Zoltowski et al., 2020</a>; <a href="#smith2021reverse">Smith et al., 2021</a>; <a href="#lee2023switching">Lee et al., 2023</a>).
+                            Recently, we developed the Gaussian process SLDS (<a href="#hu2024modeling">Hu et al., 2024</a>), which generalizes the rSLDS while retaining its interpretable structure.
+                            We work closely with experimental neuroscientists to apply our techniques and motivate new methodological work.
+                            For example, we are working with <a href="https://www.bbe.caltech.edu/people/david-j-anderson">Prof. David Anderson</a> at Caltech to study attractor dynamics in the hypothalamus during social interactions using our methods
+                            (<a href="#nair2023approximate">Nair et al., 2023</a>; <a href="#liu2024encoding">Liu*, Nair* et al., 2024</a>; <a href="#mountoufaris2024neuropeptide">Mountoufaris et al., 2024</a>; <a href="#vinograd2024intrinsic">Vinograd*, Nair* et al., 2024</a>).
+                            Finally, we develop software packages like <a href="https://github.com/lindermanlab/ssm">SSM</a> and <a href="https://probml.github.io/dynamax/">Dynamax</a> (<a href="#linderman2024dynamax">Linderman et al., 2024</a>) for practitioners and methodological researchers alike.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="3u 12u(mobile)">
+                        <article class="box style2">
+                            <img src="images/gimbal3.jpg" width="80%"/>
+                            <p style="font-size:0.8em; text-align:center">Modeling keypoints with GIMBAL (<a href="#zhang2021gimbal">Zhang et al., 2021</a>) and Keypoint MoSeq (<a href="#weinreb2024keypoint">Weinreb et al., 2024</a>).</p>
+                        </article>
+                    </div>
+                    <div class="9u 12u(mobile)">
+                        <h3>Behavioral Time Series Models</h3>
+                        <p>
+                            Quantifying natural behavior poses both computational and statistical challenges, like how to track animals' posture, identify stereotyped patterns of movement, and relate movement to simultaneously recorded neural measurements.
+                            For several years, we have worked with <a href="https://neuro.hms.harvard.edu/faculty-staff/sandeep-robert-datta">Prof. Bob Datta</a> at Harvard Medical School to extend and apply Motion Sequencing (MoSeq) (<a href="https://doi.org/10.1016%2Fj.neuron.2015.11.031">Wiltschko et al., 2015</a>), an SSM that parses videos of freely moving animals into sequences of short, stereotyped movements called <i>syllables</i>.
+                            We have developed methods like Time-Warped MoSeq, which disentangles discrete and continuous forms of behavioral variation (<a href="#costacurta2022distinguishing">Costacurta et al., 2022</a>),
+                            and GIMBAL, a probabilistic model for 3D keypoint tracking (<a href="#zhang2021gimbal">Zhang et al., 2021</a>).
+                            Recently, we collaborated with the Datta Lab on <b>Keypoint MoSeq</b> (<a href="#weinreb2024keypoint">Weinreb et al., 2024</a>), which combines GIMBAL and MoSeq to extract syllables directly from keypoint trajectories.
+                            Using these tools, we have studied how natural behavior relates to neural activity in the basal ganglia in mice (<a href="#markowitz2018striatum">Markowitz et al., 2018</a>, <a href="#markowitz2023spontaneous">2023</a>),
+                            how it correlates with whole-brain activity patterns measured with Fos (<a href="#friedmann2024concerted">Friedmann et al., 2024</a>),
+                            and how internal state and external stimuli drive natural behavior of larval zebrafish (<a href="#johnson2020probabilistic">Johnson*, Linderman* et al., 2020</a>).
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="3u 12u(mobile)">
+                        <article class="box style2">
+                            <img src="images/deep_ssm.png" width="100%"/>
+                            <p style="font-size:0.8em; text-align:center">The S5 architecture (<a href="#smith2023simplified">Smith et al., 2023</a>).
+                        </article>
+                    </div>
+                    <div class="9u 12u(mobile)">
+                        <h3>Deep State Space Models</h3>
+                        <p>
+                            There has been a resurgence of interest in state space models within the machine learning community thanks to the impressive performance of deep SSMs (Gu et al., 2021, 2023).
+                            The architecture is surprisingly simple: each layer is a standard linear dynamical system, and the layers are nonlinearly coupled to one another to capture more complex relationships.
+                            We contributed to this line of work with <b>S5</b> (<a href="#smith2023simplified">Smith et al., 2023a</a>,<a href="#smith2023convolutional">b</a>), which simplified earlier work and paved the way for deep SSMs with time-varying dynamics.
+                            Now we are developing a theoretical framework for understanding deep SSMs (<a href="#smekal2024theory">Smékal et al., 2024</a>) and extending the parallel scan at the core of S5 to allow nonlinear dynamics within each layer (<a href="#gonzalez2024towards">Gonzalez et al., 2024</a>).
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="3u 12u(mobile)">
+                        <article class="box style2">
+                            <img src="images/ppseq.jpg" width="100%"/>
+                            <p style="font-size:0.8em; text-align:center">PP-Seq (<a href="#williams2020point">Williams et al., 2020</a>).
+                        </article>
+                    </div>
+                    <div class="9u 12u(mobile)">
+                        <h3>Point Processes</h3>
+                        <p>
+                            Neural spike trains are naturally modeled as multivariate point processes.
+                            My <a href="#linderman2016thesis">doctoral thesis</a> focused on Bayesian models and inference algorithms for discovering latent network structure underlying point processes (<a href="#linderman2014discovering">Linderman and Adams, 2014</a>; <a href="#linderman2016bayesian">Linderman et al., 2016</a>).
+                            More recently, we developed <b>PP-Seq</b> &mdash; a type of doubly-stochastic point process model called a Neyman-Scott process &mdash; for detecting sequential firing patterns in spike train data (<a href="#williams2020point">Williams et al., 2020</a>),
+                            and we made novel theoretical connections between Neyman-Scott processes and Bayesian nonparametric mixture models (<a href="#wang2023spatiotemporal">Wang et al., 2023</a>).
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="3u 12u(mobile)">
+                        <article class="box style2">
+                            <img src="images/svae.jpg" width="80%"/>
+                            <p style="font-size:0.8em; text-align:center">Structure-exploiting amortized variational inference (<a href="#zhao2023revisiting">Zhao and Linderman, 2023</a>).
+                        </article>
+                    </div>
+                    <div class="9u 12u(mobile)">
+                        <h3>Scalable Inference Algorithms</h3>
+                        <p>
+                            As neural and behavioral recording technologies advance, the size of the resulting datasets is growing exponentially quickly.
+                            To fit complex models to these data, we need algorithms that can scale to the challenge.
+                            We develop approximate Bayesian inference algorithms for complex models and large-scale datasets,
+                            including novel approaches for gradient-based variational inference (VI) (<a href="#naesseth2017rejection">Naesseth et al., 2017</a>),
+                            methods that blend sequential Monte Carlo and VI (<a href="#naesseth2018variational">Naesseth et al., 2018</a>; <a href="#lawson2022sixo">Lawson et al. 2022</a>, <a href="#lawson2023nasx">2023</a>),
+                            and structure-exploiting inference algorithms for variational autoencoders (<a href="#zhao2023revisiting">Zhao and Linderman, 2023</a>).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
