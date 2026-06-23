@@ -69,28 +69,11 @@
             </header>
 
             <div class="container">
-                {% assign n = 0 %} {% assign j = 0 %} {% for student in site.alumni%} {% if j == 0 %}
-                <div class="row">
-                    {% endif %}
-
-                    <div class="4u 12u(mobile)">
-                        <article class="box style2">
-                            <a href={{ student.link }} class="image featured"><img src={{ student.pic }} alt="" /></a>
-                            <h3><a href={{ student.link }}>{{ student.name }}</a></h3>
-                            <p> {{ student.type }} </p>
-                            <!--<div id="email"><p>{{ student.email }}</p></div>-->
-                        </article>
-                    </div>
-
-                    {% assign n = n | plus: 1 %} {% assign j = n | modulo: 3 %} {% if j == 0 %}
-                </div>
-                {% endif %} {% endfor %}
-
-                <!-- Close div if we ended part way through a row -->
-                {% if j > 0 %}
-                </div>
-                {% endif %}
-
+                <ul id="alumni-list">
+                    {% for student in site.alumni %}
+                    <li><strong><a href="{{ student.link }}">{{ student.name }}</a></strong> &mdash; {{ student.type }}</li>
+                    {% endfor %}
+                </ul>
             </div>
         </article>
     </div>
