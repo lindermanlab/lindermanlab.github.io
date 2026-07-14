@@ -735,6 +735,10 @@
 
 		/* Navigation */
 
+			html {
+				scroll-padding-top: 3em;
+			}
+
 			#navbar {
 				display: none;
 			}
