@@ -35,6 +35,15 @@
 		// Fix: Placeholder polyfill.
 			$('form').placeholder();
 
+		// Nav panel (mobile).
+			$('#navPanel').panel({
+				delay: 500,
+				hideOnClick: true,
+				hideOnSwipe: true,
+				resetScroll: true,
+				side: 'right'
+			});
+
 		// Prioritize "important" elements on mobile.
 			skel.on('+mobile -mobile', function() {
 				$.prioritize(
