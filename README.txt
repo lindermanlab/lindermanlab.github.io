@@ -1,9 +1,4 @@
-To upload to Stanford server:
-```
-scp -r _site/* swl1@rice.stanford.edu:~/afs-home/WWW/
-```
-
-Miniport by HTML5 UP
+Based on Miniport by HTML5 UP
 html5up.net | @ajlkn
 Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 
